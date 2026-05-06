@@ -1,0 +1,1577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wordilene Divergent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-void: #03040a;
+    --bg-deep: #060b18;
+    --bg-card: #0a1022;
+    --bg-glass: rgba(10,16,34,0.85);
+    --teal: #00c9d4;
+    --teal-dim: #007a82;
+    --purple: #5c2d8a;
+    --purple-bright: #9b4fd4;
+    --crimson: #8b1a1a;
+    --crimson-bright: #c0392b;
+    --gold: #c9a227;
+    --gold-dim: #7a5f12;
+    --text-primary: #e8ddd0;
+    --text-secondary: #8a95a8;
+    --text-dim: #4a5568;
+    --border: rgba(0,201,212,0.15);
+    --glow-teal: 0 0 20px rgba(0,201,212,0.3);
+    --glow-purple: 0 0 20px rgba(92,45,138,0.4);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  /* ANTI-COPY */
+  body {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: var(--bg-void);
+    color: var(--text-primary);
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 18px;
+    line-height: 1.8;
+    overflow-x: hidden;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--bg-void); }
+  ::-webkit-scrollbar-thumb { background: var(--teal-dim); border-radius: 3px; }
+
+  /* BACKGROUND STARS */
+  .stars-bg {
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(92,45,138,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 80% 20%, rgba(0,201,212,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 80%, rgba(139,26,26,0.07) 0%, transparent 50%);
+  }
+  .stars-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(1px 1px at 10% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 25% 45%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 40% 8%, rgba(255,255,255,0.3) 0%, transparent 100%),
+      radial-gradient(1px 1px at 55% 72%, rgba(255,255,255,0.15) 0%, transparent 100%),
+      radial-gradient(1px 1px at 70% 35%, rgba(255,255,255,0.35) 0%, transparent 100%),
+      radial-gradient(1px 1px at 85% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1.5px 1.5px at 92% 12%, rgba(0,201,212,0.5) 0%, transparent 100%),
+      radial-gradient(1px 1px at 15% 88%, rgba(155,79,212,0.4) 0%, transparent 100%),
+      radial-gradient(1px 1px at 60% 95%, rgba(255,255,255,0.2) 0%, transparent 100%),
+      radial-gradient(1px 1px at 33% 60%, rgba(255,255,255,0.25) 0%, transparent 100%),
+      radial-gradient(1px 1px at 78% 85%, rgba(0,201,212,0.3) 0%, transparent 100%);
+  }
+
+  /* MAIN LAYOUT */
+  .page-wrap { position: relative; z-index: 1; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 60px 20px;
+    position: relative;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(0,201,212,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-rune {
+    font-size: 80px; line-height: 1;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 30px rgba(0,201,212,0.6));
+    animation: pulse-rune 4s ease-in-out infinite;
+  }
+  @keyframes pulse-rune {
+    0%,100% { filter: drop-shadow(0 0 20px rgba(0,201,212,0.4)); }
+    50% { filter: drop-shadow(0 0 50px rgba(0,201,212,0.9)); }
+  }
+  .hero-eyebrow {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 16px;
+    opacity: 0.8;
+  }
+  .hero-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(32px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    background: linear-gradient(135deg, #fff 0%, var(--teal) 40%, var(--purple-bright) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+    text-shadow: none;
+    filter: drop-shadow(0 0 30px rgba(0,201,212,0.3));
+  }
+  .hero-sub {
+    font-family: 'Cinzel', serif;
+    font-size: 14px; letter-spacing: 4px; color: var(--gold);
+    margin-bottom: 40px; opacity: 0.9;
+  }
+  .hero-desc {
+    max-width: 600px;
+    color: var(--text-secondary);
+    font-size: 16px; line-height: 1.9;
+    margin-bottom: 50px;
+    font-style: italic;
+  }
+  .hero-divider {
+    width: 200px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--teal), var(--purple-bright), transparent);
+    margin: 0 auto 40px;
+    position: relative;
+  }
+  .hero-divider::before {
+    content: '⬡';
+    position: absolute; left: 50%; transform: translateX(-50%) translateY(-50%);
+    color: var(--teal); font-size: 14px;
+    background: var(--bg-void); padding: 0 8px;
+  }
+  .scroll-cta {
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: 4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  .scroll-cta:hover { color: var(--teal); }
+  .scroll-arrow {
+    width: 1px; height: 50px;
+    background: linear-gradient(to bottom, var(--teal), transparent);
+    margin: 0 auto;
+    animation: scroll-bounce 2s ease-in-out infinite;
+  }
+  @keyframes scroll-bounce {
+    0%,100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.6); opacity: 0.5; }
+  }
+
+  /* ── NAV ── */
+  .site-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(3,4,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 20px;
+  }
+  .nav-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 56px;
+  }
+  .nav-logo {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 14px;
+    background: linear-gradient(to right, var(--teal), var(--purple-bright));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .nav-links {
+    display: flex; gap: 24px; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Cinzel', serif;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-secondary); text-decoration: none;
+    transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--teal); }
+  .nav-admin-btn {
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-dim); padding: 6px 14px;
+    font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px;
+    cursor: pointer; border-radius: 2px; transition: all 0.3s;
+  }
+  .nav-admin-btn:hover { border-color: var(--teal); color: var(--teal); }
+
+  /* ── SECTION WRAPPER ── */
+  .section { padding: 80px 0; }
+  .section-header {
+    text-align: center; margin-bottom: 60px;
+  }
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 10px; letter-spacing: 6px; text-transform: uppercase;
+    color: var(--teal); margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(22px, 4vw, 36px);
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+  .section-line {
+    width: 80px; height: 2px;
+    background: linear-gradient(to right, var(--teal), var(--purple-bright));
+    margin: 0 auto;
+  }
+
+  /* ── CHARACTERS ── */
+  .characters-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+  }
+  .char-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px 20px;
+    text-align: center;
+    border-radius: 4px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .char-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0,201,212,0.12);
+  }
+  .char-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(to right, var(--teal), var(--purple-bright));
+  }
+  .char-avatar {
+    width: 70px; height: 70px;
+    border-radius: 50%;
+    border: 2px solid var(--teal-dim);
+    margin: 0 auto 14px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 30px;
+    background: radial-gradient(circle, rgba(0,201,212,0.1) 0%, var(--bg-deep) 100%);
+  }
+  .char-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px; font-weight: 700;
+    color: var(--text-primary); margin-bottom: 4px;
+  }
+  .char-title {
+    font-size: 12px; color: var(--teal); margin-bottom: 10px;
+    font-style: italic;
+  }
+  .char-desc {
+    font-size: 13px; color: var(--text-secondary); line-height: 1.6;
+  }
+  .char-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 12px; }
+  .char-tag {
+    font-size: 10px; padding: 2px 8px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif;
+  }
+
+  /* ── CHAPTERS ── */
+  .chapter-list { display: flex; flex-direction: column; gap: 4px; }
+  .chapter-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .chapter-item:hover { border-color: rgba(0,201,212,0.3); }
+  .chapter-item.open { border-color: rgba(0,201,212,0.25); }
+  .chapter-header {
+    display: flex; align-items: center; gap: 16px;
+    padding: 18px 24px;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .chapter-header:hover { background: rgba(0,201,212,0.04); }
+  .chapter-num {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 22px; font-weight: 900;
+    color: var(--teal-dim); min-width: 40px;
+    opacity: 0.6;
+  }
+  .chapter-info { flex: 1; }
+  .chapter-name {
+    font-family: 'Cinzel', serif;
+    font-size: 15px; color: var(--text-primary);
+    font-weight: 600;
+  }
+  .chapter-teaser {
+    font-size: 13px; color: var(--text-dim); margin-top: 2px;
+    font-style: italic;
+  }
+  .chapter-arrow {
+    font-size: 12px; color: var(--teal);
+    transition: transform 0.3s;
+  }
+  .chapter-item.open .chapter-arrow { transform: rotate(90deg); }
+  .chapter-body {
+    display: none;
+    padding: 0 24px 28px;
+    border-top: 1px solid var(--border);
+  }
+  .chapter-item.open .chapter-body { display: block; }
+  .chapter-text {
+    color: var(--text-secondary);
+    font-size: 17px; line-height: 2;
+    padding-top: 24px;
+  }
+  .chapter-text p { margin-bottom: 16px; }
+  .chapter-text strong { color: var(--text-primary); }
+  .chapter-text em { color: var(--gold); font-style: italic; }
+  .chapter-text .dialogue {
+    color: var(--teal);
+    font-style: italic;
+  }
+  .chapter-text .power-up {
+    display: inline-block;
+    background: rgba(0,201,212,0.08);
+    border: 1px solid rgba(0,201,212,0.2);
+    border-radius: 3px;
+    padding: 2px 10px;
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    color: var(--teal);
+    margin: 2px;
+  }
+  .chapter-text .section-break {
+    text-align: center;
+    color: var(--teal-dim);
+    margin: 20px 0;
+    letter-spacing: 8px;
+    font-size: 12px;
+  }
+
+  /* Kingdoms */
+  .kingdoms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .kingdom-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 20px;
+    border-radius: 3px;
+    transition: all 0.3s;
+  }
+  .kingdom-card:hover { border-color: rgba(0,201,212,0.3); box-shadow: 0 4px 20px rgba(0,201,212,0.08); }
+  .kingdom-symbol { font-size: 32px; margin-bottom: 10px; }
+  .kingdom-name {
+    font-family: 'Cinzel', serif;
+    font-size: 14px; font-weight: 700;
+    color: var(--text-primary); margin-bottom: 4px;
+  }
+  .kingdom-trait {
+    font-size: 12px; color: var(--teal); margin-bottom: 8px;
+    font-family: 'Cinzel', serif;
+  }
+  .kingdom-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+  /* Powers */
+  .powers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 14px;
+  }
+  .power-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--teal);
+    padding: 16px 20px;
+    border-radius: 3px;
+  }
+  .power-name {
+    font-family: 'Cinzel', serif;
+    font-size: 13px; color: var(--teal);
+    font-weight: 700; margin-bottom: 6px;
+  }
+  .power-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+
+  /* ── ADMIN MODAL ── */
+  .modal-overlay {
+    display: none;
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,0.8);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal-box {
+    background: var(--bg-deep);
+    border: 1px solid var(--border);
+    padding: 40px;
+    width: 90%; max-width: 600px;
+    border-radius: 4px;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+  }
+  .modal-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 20px; color: var(--teal);
+    margin-bottom: 24px;
+  }
+  .modal-close {
+    position: absolute; top: 16px; right: 20px;
+    background: transparent; border: none;
+    color: var(--text-dim); font-size: 22px;
+    cursor: pointer; transition: color 0.2s;
+  }
+  .modal-close:hover { color: var(--crimson-bright); }
+  .form-group { margin-bottom: 20px; }
+  .form-label {
+    display: block;
+    font-family: 'Cinzel', serif; font-size: 11px;
+    letter-spacing: 2px; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px;
+  }
+  .form-input, .form-textarea, .form-select {
+    width: 100%;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text-primary);
+    padding: 10px 14px;
+    font-family: 'Crimson Text', serif;
+    font-size: 16px;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.3s;
+    -webkit-user-select: text; user-select: text;
+  }
+  .form-input:focus, .form-textarea:focus { border-color: var(--teal); }
+  .form-textarea { min-height: 160px; resize: vertical; }
+  .btn-primary {
+    background: linear-gradient(135deg, var(--teal-dim), var(--purple));
+    border: none; color: white;
+    padding: 12px 28px;
+    font-family: 'Cinzel', serif; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase;
+    cursor: pointer; border-radius: 3px;
+    transition: opacity 0.3s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-danger {
+    background: transparent; border: 1px solid var(--crimson);
+    color: var(--crimson-bright); padding: 6px 14px;
+    font-size: 11px; font-family: 'Cinzel', serif;
+    cursor: pointer; border-radius: 2px; transition: all 0.2s;
+  }
+  .btn-danger:hover { background: rgba(139,26,26,0.2); }
+  .admin-tabs { display: flex; gap: 4px; margin-bottom: 28px; }
+  .admin-tab {
+    padding: 8px 18px;
+    background: transparent; border: 1px solid var(--border);
+    color: var(--text-dim);
+    font-family: 'Cinzel', serif; font-size: 11px;
+    letter-spacing: 1px; cursor: pointer; border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .admin-tab.active { background: var(--teal-dim); border-color: var(--teal); color: white; }
+  .admin-tab-content { display: none; }
+  .admin-tab-content.active { display: block; }
+  .admin-chapter-list { display: flex; flex-direction: column; gap: 10px; margin-top: 16px; }
+  .admin-chapter-item {
+    background: var(--bg-card); border: 1px solid var(--border);
+    padding: 12px 16px; border-radius: 3px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .admin-chapter-title { font-family: 'Cinzel', serif; font-size: 13px; color: var(--text-primary); }
+  .image-preview-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .image-preview-item { position: relative; }
+  .image-preview-item img { width: 80px; height: 80px; object-fit: cover; border-radius: 3px; border: 1px solid var(--border); }
+  .image-delete-btn {
+    position: absolute; top: -6px; right: -6px;
+    width: 20px; height: 20px;
+    background: var(--crimson-bright); border: none;
+    color: white; font-size: 12px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+  }
+  .msg { padding: 10px 14px; border-radius: 3px; margin-bottom: 14px; font-size: 14px; }
+  .msg.success { background: rgba(0,201,212,0.1); border: 1px solid var(--teal-dim); color: var(--teal); }
+  .msg.error { background: rgba(139,26,26,0.15); border: 1px solid var(--crimson); color: var(--crimson-bright); }
+
+  /* ── AI CHAT ── */
+  .ai-fab {
+    position: fixed; bottom: 28px; right: 28px; z-index: 500;
+    width: 48px; height: 48px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--teal-dim), var(--purple));
+    border: 1px solid rgba(0,201,212,0.4);
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(0,201,212,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: fab-pulse 3s ease-in-out infinite;
+  }
+  .ai-fab:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 30px rgba(0,201,212,0.5);
+    animation: none;
+  }
+  .ai-fab svg { width: 22px; height: 22px; fill: white; }
+  @keyframes fab-pulse {
+    0%,100% { box-shadow: 0 4px 20px rgba(0,201,212,0.3); }
+    50% { box-shadow: 0 4px 30px rgba(0,201,212,0.6); }
+  }
+  .ai-chat-panel {
+    position: fixed; bottom: 88px; right: 28px; z-index: 500;
+    width: 340px; max-height: 480px;
+    background: var(--bg-deep);
+    border: 1px solid rgba(0,201,212,0.25);
+    border-radius: 8px;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.6);
+    overflow: hidden;
+  }
+  .ai-chat-panel.open { display: flex; }
+  .ai-chat-header {
+    padding: 14px 16px;
+    background: linear-gradient(to right, rgba(0,122,130,0.3), rgba(92,45,138,0.3));
+    border-bottom: 1px solid rgba(0,201,212,0.15);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .ai-chat-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--teal);
+    box-shadow: 0 0 8px var(--teal);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  .ai-chat-title {
+    font-family: 'Cinzel', serif; font-size: 12px;
+    color: var(--teal); letter-spacing: 1px;
+  }
+  .ai-chat-close {
+    margin-left: auto; background: transparent; border: none;
+    color: var(--text-dim); cursor: pointer; font-size: 16px;
+    transition: color 0.2s;
+  }
+  .ai-chat-close:hover { color: white; }
+  .ai-chat-messages {
+    flex: 1; overflow-y: auto; padding: 16px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .ai-msg {
+    max-width: 85%; padding: 10px 14px;
+    border-radius: 12px; font-size: 14px; line-height: 1.6;
+  }
+  .ai-msg.bot {
+    background: rgba(0,201,212,0.08);
+    border: 1px solid rgba(0,201,212,0.15);
+    color: var(--text-secondary);
+    align-self: flex-start;
+    border-bottom-left-radius: 3px;
+  }
+  .ai-msg.user {
+    background: rgba(92,45,138,0.25);
+    border: 1px solid rgba(155,79,212,0.2);
+    color: var(--text-primary);
+    align-self: flex-end;
+    border-bottom-right-radius: 3px;
+  }
+  .ai-typing { display: flex; gap: 4px; align-items: center; padding: 4px 0; }
+  .ai-typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--teal); opacity: 0.5;
+    animation: typing-dot 1.4s ease-in-out infinite;
+  }
+  .ai-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .ai-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typing-dot { 0%,100% { opacity:0.3; transform:scale(1); } 50% { opacity:1; transform:scale(1.2); } }
+  .ai-chat-input-row {
+    padding: 12px;
+    border-top: 1px solid rgba(0,201,212,0.1);
+    display: flex; gap: 8px;
+  }
+  .ai-chat-input {
+    flex: 1; background: rgba(10,16,34,0.8);
+    border: 1px solid rgba(0,201,212,0.15);
+    color: var(--text-primary); padding: 8px 12px;
+    font-family: 'Crimson Text', serif; font-size: 14px;
+    border-radius: 20px; outline: none;
+    -webkit-user-select: text; user-select: text;
+  }
+  .ai-chat-input:focus { border-color: var(--teal); }
+  .ai-send-btn {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--teal-dim), var(--purple));
+    border: none; border-radius: 50%;
+    cursor: pointer; color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; transition: opacity 0.2s;
+  }
+  .ai-send-btn:hover { opacity: 0.8; }
+
+  /* EXTRA CONTENT (from admin) */
+  .extra-chapters-section { padding: 40px 0; }
+  .extra-chapter-item {
+    background: var(--bg-card);
+    border: 1px solid rgba(155,79,212,0.2);
+    border-left: 3px solid var(--purple-bright);
+    padding: 28px; border-radius: 3px;
+    margin-bottom: 20px;
+  }
+  .extra-chapter-title {
+    font-family: 'Cinzel', serif; font-size: 16px;
+    color: var(--purple-bright); margin-bottom: 12px;
+  }
+  .extra-chapter-text {
+    color: var(--text-secondary); font-size: 17px; line-height: 2;
+  }
+  .extra-images-section { padding: 20px 0; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .gallery-img {
+    width: 100%; border-radius: 4px;
+    border: 1px solid var(--border);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .gallery-img:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 30px rgba(0,201,212,0.2);
+  }
+  .gallery-caption {
+    font-size: 12px; color: var(--text-dim);
+    text-align: center; margin-top: 6px;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 20px;
+    text-align: center;
+  }
+  .footer-title {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: 18px;
+    background: linear-gradient(to right, var(--teal), var(--purple-bright));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .footer-copy {
+    font-size: 12px; color: var(--text-dim);
+    font-family: 'Cinzel', serif; letter-spacing: 2px;
+  }
+
+  /* RESPONSIVE */
+  @media(max-width:600px){
+    .nav-links { display:none; }
+    .characters-grid { grid-template-columns: 1fr 1fr; }
+    .kingdoms-grid { grid-template-columns: 1fr 1fr; }
+    .ai-chat-panel { width: calc(100vw - 40px); right: 20px; }
+    .modal-box { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stars-bg"></div>
+
+<!-- NAV -->
+<nav class="site-nav">
+  <div class="nav-inner">
+    <div class="nav-logo">W·D</div>
+    <ul class="nav-links">
+      <li><a href="#personagens">Personagens</a></li>
+      <li><a href="#capitulos">Capítulos</a></li>
+      <li><a href="#reinos">Reinos</a></li>
+      <li><a href="#poderes">Poderes</a></li>
+      <li><a href="#galeria">Galeria</a></li>
+    </ul>
+    <button class="nav-admin-btn" onclick="openAdminModal()">⚙ Admin</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-rune">◈</div>
+  <div class="hero-eyebrow">Uma história de isekai e evolução</div>
+  <h1 class="hero-title">Wordilene Divergent</h1>
+  <div class="hero-sub">A Saga do Divergente</div>
+  <div class="hero-divider"></div>
+  <p class="hero-desc">
+    Após a morte na Terra, a alma de Alison atravessa o vazio e renasce em um mundo desconhecido —
+    sem memórias, sem recursos, apenas com um poder incomum que os outros chamam de <em>Divergência</em>.
+    Entre reinos em guerra, criaturas evoluídas e um culto que busca despertar deuses do caos,
+    a jornada de um novo começo apenas começa.
+  </p>
+  <div class="scroll-cta" onclick="document.getElementById('personagens').scrollIntoView({behavior:'smooth'})">
+    <span>Explorar</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
+
+<!-- PERSONAGENS -->
+<section class="section" id="personagens">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-label">Os Protagonistas</div>
+      <h2 class="section-title">Personagens</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="characters-grid">
+      <div class="char-card">
+        <div class="char-avatar">⚡</div>
+        <div class="char-name">Alison</div>
+        <div class="char-title">O Divergente</div>
+        <div class="char-desc">Reencarnado da Terra com poderes de slime: absorção, regeneração, fios e liquidificação.</div>
+        <div class="char-tags">
+          <span class="char-tag">Divergente</span>
+          <span class="char-tag">Absorção</span>
+          <span class="char-tag">Purificador</span>
+        </div>
+      </div>
+      <div class="char-card">
+        <div class="char-avatar" style="border-color:rgba(155,79,212,0.4)">🌑</div>
+        <div class="char-name">Eryndra</div>
+        <div class="char-title">Dark Elfa • Filha do Rei</div>
+        <div class="char-desc">Filha ilegítima do Rei Élfico de Syl. Usa espada negra e manipulação de sombras.</div>
+        <div class="char-tags">
+          <span class="char-tag">Dark Elf</span>
+          <span class="char-tag">Sombras</span>
+          <span class="char-tag">Espada Negra</span>
+        </div>
+      </div>
+      <div class="char-card">
+        <div class="char-avatar" style="border-color:rgba(201,162,39,0.4)">🔮</div>
+        <div class="char-name">Kaena</div>
+        <div class="char-title">Arcanis • Ordem do Selamento</div>
+        <div class="char-desc">Única sobrevivente de sua ordem. Usa magia de fogo, selos e raios para combater rupturas.</div>
+        <div class="char-tags">
+          <span class="char-tag">Arcanis</span>
+          <span class="char-tag">Selamento</span>
+          <span class="char-tag">Fogo</span>
+        </div>
+      </div>
+      <div class="char-card">
+        <div class="char-avatar" style="border-color:rgba(192,57,43,0.4)">🐉</div>
+        <div class="char-name">Moeru Tenshi</div>
+        <div class="char-title">Dragonite • O Temido de Geluretch</div>
+        <div class="char-desc">Meio-dragão meio-humano. Temperamento explosivo com fogo literal. O mais insano da equipe.</div>
+        <div class="char-tags">
+          <span class="char-tag">Dragonite</span>
+          <span class="char-tag">Fogo</span>
+          <span class="char-tag">Asas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAPÍTULOS -->
+<section class="section" id="capitulos" style="background: rgba(0,0,0,0.2);">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-label">A Saga Completa</div>
+      <h2 class="section-title">Capítulos</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="chapter-list" id="chapterList">
+
+      <!-- CHAPTER 1 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">01</div>
+          <div class="chapter-info">
+            <div class="chapter-name">A Chegada — Morte e Renascimento</div>
+            <div class="chapter-teaser">No espaço entre os mundos, uma escolha muda tudo.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>No espaço após a morte na Terra, moléculas flutuantes formam um painel de escolhas. Reencarnar na Terra — um lugar conhecido — ou arriscar um planeta completamente desconhecido. Claro que a escolha foi o desconhecido.</p>
+            <p>As moléculas se unem, formando um corpo. Os olhos abrem para a grama de um novo mundo, surgindo através de um portal triangular negro e giratório — sem explicação, sem aviso. <em>Uma vida nova começa.</em></p>
+            <p>O mundo é lindo. E então aparece um slime preto que, ao ser atacado com as mãos, recebe apenas 1 de dano. <strong>1 de dano. Queeeeeee.</strong></p>
+            <p>Melhor opção? Sair correndo. Com madeira do chão, uma lança improvisada é forjada — 5 de dano, muito melhor. Após longos minutos de batalha extenuante contra aquela criatura lenta...</p>
+            <p>O slime é finalmente morto. A jornada começa.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 2 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">02</div>
+          <div class="chapter-info">
+            <div class="chapter-name">O Reino de Valley</div>
+            <div class="chapter-teaser">Um reino enorme no horizonte. Um pequeno detalhe esquecido.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Lá no horizonte: um reino enorme. Horas caminhando sob o sol desse mundo, chegando às portas de <strong>Valley</strong>. Os guardas bloqueiam a entrada — e então o problema se torna claro.</p>
+            <p>Sem roupas. Literalmente nada. Preso por andar nu pela cidade.</p>
+            <p>Mas roupas são dadas, e liberdade conquista a cidade. O destino? Uma <em>guilda de aventureiros</em> — todo conhecimento de animes da vida anterior apontava para isso. A balconista Lumea oferece a primeira missão: <strong>Rank F — matar javalis na floresta.</strong></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 3 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">03</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Eryndra — A Elfa Salva</div>
+            <div class="chapter-teaser">Gritos na floresta. Uma dark elfa atacada por goblins. Uma regeneração inesperada.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Caminhando em busca da floresta para a missão, gritos cortam o ar. No meio do mato: uma elfa sendo atacada por goblins. Tentando enfrentá-los, os ferimentos são sérios... mas algo estranho acontece.</p>
+            <p><strong>Regeneração de slime.</strong> Os ferimentos fecham sozinhos. Os goblins são derrotados, a elfa, salva.</p>
+            <p>Ela se apresenta: <strong>Eryndra</strong> — dark elfa, filha ilegítima do Rei Élfico de Syl. A mãe foi exilada com ela para uma casa isolada na floresta. Aos 15 anos, uma horda de goblins atacou a casa e matou a mãe. Desde então, Eryndra vagava sozinha.</p>
+            <p>Juntos, chegam a Valley. Olhares de julgamento acompanham a dark elfa humana no reino dos humanos. A recompensa pela missão é recebida, e um quarto com duas camas é conquistado. Dois companheiros, uma nova jornada.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 4 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">04</div>
+          <div class="chapter-info">
+            <div class="chapter-name">A Marca do Culto — Korvaxen</div>
+            <div class="chapter-teaser">Três demônios. Uma marca na mão. E um pedaço arrancado com os dentes.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Uma missão solitária para colher ervas se transforma em algo muito diferente. Três demônios surgem. <strong>Korvaxen</strong>, o líder, desfere um soco que faz vomitar sangue. No chão, quase morto.</p>
+            <p>Korvaxen se aproxima e grava um símbolo na mão esquerda — a <em>marca do culto</em>. Antes de partir, um pedaço da mão do demônio é arrancado com os dentes. Mesmo com a regeneração, ele sai ileso.</p>
+            <p>Sozinho na floresta, tentando sobreviver, algo muda. A marca transfere energia maligna — e essa energia começa a ser manipulada. Absorção e regeneração evoluem. Em minutos, ferimentos antes incuráveis fecham.</p>
+            <p>A marca nas mãos gera desconfiança ao retornar a Valley. <span class="power-up">▲ Absorção aumentada</span> <span class="power-up">▲ Regeneração evoluída</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 5 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">05</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Purificação e Kaena</div>
+            <div class="chapter-teaser">A marca tenta tomar o controle. Uma purificação nunca antes vista. Uma aliada mística.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>O capitão <strong>Varrox</strong> leva Alison e Eryndra à força a uma sala da guilda — são <em>divergentes</em>, portadores da marca do culto, e devem ficar fora de Valley por segurança. Uma chave de uma casa isolada é entregue.</p>
+            <p>Na casa, uma porta se fecha sozinha. Uma mulher misteriosa surge: <strong>Kaena</strong>, Arcanis, única sobrevivente da Ordem do Selamento. Ela explica sobre o culto e que existem outros divergentes no mundo.</p>
+            <p>A marca tenta tomar o controle. Concentrando-se, não apenas o controle é bloqueado — a energia maligna é <em>purificada</em>, transformada em poder puro. A marca muda de aparência: azulada, brilhante, e desaparece.</p>
+            <p>Kaena, que nunca viu algo assim, se ajoelha. Uma nova aliada se junta ao grupo.</p>
+            <p>Um cultista aparece como teste — derrota com <em>Corte Slime</em>, seguida de absorção. <span class="power-up">▲ Novo poder: Corte Slime</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 6 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">06</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Floresta Vargorath — A Ruptura</div>
+            <div class="chapter-teaser">Uma ruptura dimensional. Um reino do culto dentro dela. E asas de morcego de slime.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Os três se dirigem a <strong>Vargorath</strong> — floresta onde Krov'rem já passou, cheia de seres evoluídos de forma anormal. Uma ruptura dimensional é encontrada.</p>
+            <p>Alison salta sozinho, deixando Kaena e Eryndra guardando a saída. Dentro: um reino completo do culto, mas sem maldade extrema nos habitantes — não é o principal.</p>
+            <p>Um morcego mutante é enfrentado. Com a adaga de Eryndra, a criatura é morta... e absorvida. <span class="power-up">▲ Asas de morcego de slime — podem ser ativadas e desativadas à vontade</span></p>
+            <p>Saindo voando da ruptura, o grupo retorna à casa para descansar. No dia seguinte, guardas verificam a marca — que não existe mais. Varrox reconhece que não são mais perigo. Valley está novamente acessível. Kaena remove sua capa — não precisa mais se esconder.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 7 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">07</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Aranhas Sonoras e Conspiração</div>
+            <div class="chapter-teaser">Fios que captam som. Uma conspiração dentro do castelo. O traidor Lord Vassamir.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Treino na floresta: <strong>Aranhas Sonoras</strong> — criaturas que usam teias para captar e replicar sons. Com Kaena paralisando e Eryndra cortando em dupla, a aranha é derrotada e absorvida. <span class="power-up">▲ Fios Sonoros — captura e reproduz sons</span></p>
+            <p>Na floresta, fios sonoros captam guardas de Valley conversando sobre uma <em>guerra em 7 dias</em> contra Syl, para roubar o Elixir da Vida e acordar o rei e a rainha adormecidos há semanas.</p>
+            <p>O grupo viaja a Syl para avisar o rei élfico <strong>Lyrem</strong>. Alison negocia confiança reproduzindo as conversas gravadas — e cria literalmente fones de ouvido com as teias para comunicação a distância.</p>
+            <p>Os fios sonoros são espalhados por toda a floresta entre Syl'myra e Asterveil. De volta a Valley, Alison sobe o castelo sozinho e escuta: não o rei — mas <strong>Lord Vassamir</strong>, que envenenou o rei com sono profundo e planeja roubar o trono. <em>Ele é o responsável pela guerra.</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 8 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">08</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Duraz — Os Anões e Ferrogul</div>
+            <div class="chapter-teaser">Nas montanhas dos anões, uma criatura devora minerais. Uma arma especial é forjada.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Com 5 dias para a guerra, o grupo vai a <strong>Duraz</strong>, reino dos anões. O grande ferreiro <strong>Titan</strong> apresenta um problema: o <strong>Ferrogul</strong> — criatura comedora de minerais que deixa os recursos escassos.</p>
+            <p>Entrando no túnel, Kaena usa magia de fogo que detona os explosivos, forçando o Ferrogul a subir — onde não tem vantagem. Acima, a batalha começa. Os fios de Alison prendem o Ferrogul enquanto o fogo de Kaena derrete sua carapaça de ferro, tornando-a vulnerável. Um corte vertical decisivo de Kaena encerra a luta.</p>
+            <p>Em retribuição, Titan forja:<br>— Um anel amplificador de fios (Alison absorve o anel, incorporando o poder)<br>— Uma espada para Eryndra<br>— Um cajado para Kaena</p>
+            <span class="power-up">▲ Fios agora cortam</span> <span class="power-up">▲ Resistência aumentada</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 9 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">09</div>
+          <div class="chapter-info">
+            <div class="chapter-name">A Batalha de Valley — Vassamir</div>
+            <div class="chapter-teaser">O traidor no trono. Uma batalha épica. E algo horrível emerge do caos.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>À noite, Alison voa até Valley. Guardas corrompidos atacam — são derrotados com fios cortantes sem morte. Os elfos de Lyrem chegam com Kaena e Eryndra. No castelo, vazio demais para ser normal.</p>
+            <p><strong>Vassamir</strong> está no trono. Um braço corrompido gera uma espada de trevas. A batalha épica começa — 3x1, depois com a equipe toda. A corrupção consome Vassamir progressivamente: 4 braços surgem, uma rajada de energia é disparada.</p>
+            <p>Alison se liquefaz em gosma para desviar, rasteja até o próprio braço cortado e o reabsorve. Com as lâminas quitinosas do louva-deus, corta o peito de Vassamir. O ser do caos rasga o próprio peito — múltiplos olhos, tentáculos, uma coisa horrenda sem salvação.</p>
+            <p>Kaena usa raio, Alison usa fios cortantes, Eryndra perfura o coração. Uma explosão. O corpo de Vassamir vira pó — mas um <em>fragmento roxo</em> fica no chão. Alison o engole, absorvendo e purificando caos em energia pura. Os ferimentos são agonizantes, mas a purificação é bem-sucedida.</p>
+            <span class="power-up">▲ Imunidade maior ao caos</span> <span class="power-up">▲ Venenos podem ser imbuídos com purificação</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 10 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">10</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Syl — Prestígio, Festival e Eryndra</div>
+            <div class="chapter-teaser">Um título conquistado. Um hidromel a mais. Um beijo sem enrolação.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Em Syl, o maior prestígio é concedido por <strong>Lyrem</strong>: moradia, acesso a arquivos, equipamentos. E o maior feito: <em>Eryndra é reconhecida pelo rei como filha</em>, embora o preconceito da população dark elfa persista.</p>
+            <p>No festival, Kaena dorme enquanto Alison e Eryndra vão à taverna. Quinze rodadas de hidromel depois, ambos estão no chão da taverna. Com a cabeça no ombro de Alison, Eryndra diz baixinho:</p>
+            <p class="dialogue">"Você… você nunca me tratou como alguém inferior ou um erro."</p>
+            <p>E então: <span class="dialogue">"Não morre. Ainda irei te derrotar em algo."</span></p>
+            <p>Na biblioteca de Syl, dias são passados lendo livros de magia e história. À noite, durante um chá no lugar favorito de Eryndra, a pergunta é feita diretamente:</p>
+            <p class="dialogue">"Eryndra, o que você sente por mim de verdade?"</p>
+            <p>Silêncio. Rubor no rosto. <span class="dialogue">"Eu… gosto de você."</span></p>
+            <p>Um beijo, sem enrolação. <em>A história de dois improvável começa.</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 11 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">11</div>
+          <div class="chapter-info">
+            <div class="chapter-name">A Dungeon dos Três Elos</div>
+            <div class="chapter-teaser">Um templo em Vargorath. Uma dungeon antiga. E Heraldo, o último guardião.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Em Vargorath, um templo escondido. Uma meio-demônio meio-anjo guarda a entrada e explica sobre os <strong>Elos</strong> — fragmentos de poder. Três desafios aguardam.</p>
+            <p><strong>Elo 1 — Golem de Pedra:</strong> Alison solidifica os braços nas rachaduras do golem e o absorve por dentro, destruindo o núcleo. <span class="power-up">▲ Elo do Sacrifício: imenso poder temporário, mas a cada segundo um ferimento surge</span></p>
+            <p><strong>Elo 2 — Três Esqueletos:</strong> Kaena usa água condutora para amplificar o raio; Eryndra derrota o seu usando a espada negra para ferir a sombra do inimigo à noite; Alison usa as lâminas imbuídas de purificação, que colapsam a espada de trevas do esqueleto. <span class="power-up">▲ Elo 2: Zona de drenagem ou doação de vida</span></p>
+            <p><strong>Elo 3 — Heraldo:</strong> Um gigante preso a monólitos roxos. Quase sem forças, ele entrega voluntariamente o terceiro elo antes de morrer: <span class="dialogue">"Você… finalmente chegou, herdeiro."</span> <span class="power-up">▲ Elo da Alma: após matar inimigos, pode capturar e armazenar suas almas</span></p>
+            <p>Os três elos são armazenados para absorção gradual ao longo do mês seguinte. De volta a Syl, Eryndra com um sorriso irônico: <span class="dialogue">"Você come por 4 ursos."</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 12 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">12</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Geluretch — Frostine e o Inverno</div>
+            <div class="chapter-teaser">Valley congela. Uma manipuladora de gelo. E a chegada de Moeru Tenshi.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Um dragão de gelo mensageiro chega: o inverno de <strong>Geluretch</strong> está se espalhando para Valley — algo que não acontecia em 500 anos. Pessoas morrendo de frio.</p>
+            <p>Montados no dragão, chegam ao local do inverno eterno. Na ruptura dentro de Geluretch, encontram <strong>Moeru Tenshi</strong> — um dragonite (meio-dragão, meio-humano), o mais temido de Geluretch.</p>
+            <p class="dialogue">Alison: "Precisamos de sua ajuda. Frostine está tomando Valley."<br>Moeru: "Ajudo vocês — ela está tirando meu descanso com esse frio todo."</p>
+            <p>No palácio de gelo, a porta é derrubada no chute sem plano nenhum. Moeru ri: <span class="dialogue">"Eu amei isso, humano."</span> A batalha começa — Alison e Moeru sincronizados, fogo de cima, lâminas embaixo. Frostine cria clones de gelo — destruídos com uma zona de colapso. Um combo final: Energia Purificadora + Chamas quebra o colar de Frostine. Ela cai.</p>
+            <p>Alison absorve toda a energia de Frostine sem matar — o inverno recua para Geluretch, Valley volta ao normal.</p>
+            <p class="dialogue">Alison: "Eae, dragãozinho — quer ser da equipe?"<br>Moeru: "Eu aceito, é claro!!!"</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 13 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">13</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Zhal — O Reino dos Lizards</div>
+            <div class="chapter-teaser">Lama, mafia e Krog Sszareth, o Pele de Ferro.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Em <strong>Zhal</strong>, reino dos lizards, a equipe afunda na lama desde a chegada. O Clã Sszareth aterroriza o reino inteiro — conhecidos pelas escamas de ferro.</p>
+            <p>Pelo caminho, Eryndra usa manipulação de sombra para eliminar três membros da mafia. Zover, o melhor mercenário da região, é contratado para matar a equipe — sua corrente vira adaga e causa cortes sérios. Alison usa o próprio sangue para cegar Zover; Kaena distrai; as lâminas quitinosas fecham a luta. Zover vive — não é batalha de honra, é sobrevivência.</p>
+            <p>No fim do corredor: <strong>Krog Sszareth</strong>. Escamas impenetráveis. O fogo de Moeru e Kaena amolece, Eryndra corta, mas as escamas se solidificam novamente. Alison ativa o <em>Elo do Sacrifício</em> — velocidade como teleporte, socos que afundam as escamas. Os órgãos internos de Krog cedem. Alison desmaia.</p>
+            <p>Eryndra, sozinha, termina Krog. Leva todos ao rei lizard. A equipe descansa. No dia seguinte, uma multidão os espera.</p>
+            <p>O povo grita: <strong>LAAI'SHAAN! — Aquele que rompe correntes.</strong></p>
+            <span class="power-up">▲ Escama de Ferro</span> <span class="power-up">▲ Resistência a veneno</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 14 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">14</div>
+          <div class="chapter-info">
+            <div class="chapter-name">Mare'Zura — O Leviatã e a Paz</div>
+            <div class="chapter-teaser">Praia de areia branca. Um gigante do oceano. E três meses de paz merecida.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Merecendo descanso, a equipe vai às <strong>Ilhas de Mare'Zura</strong>. Areia branca e quente. Moeru se arremessa na água como uma explosão: <span class="dialogue">"VEM LOGO, MANO! A ÁGUA TÁ MUITO BOA!!"</span></p>
+            <p>Horas de paz na praia — até o chão começar a vibrar. O oceano se ergue. Um pescador idoso grita: <span class="dialogue">"ELE ACORDOU! O GUARDIÃO ABISSAL!"</span></p>
+            <p>O <strong>Leviatã Primordial</strong> emerge — cabeça colossal, olhos como faróis submersos. Mas não ataca. Seu som grave é quase um "oi" tímido que ecoa como terremoto. Alison acena: <span class="dialogue">"A oiiii, leviatã!"</span> O gigante levanta uma barbatana do tamanho de uma casa, tremendo de cuidado para não causar tsunami só com o gesto. Uma mão é estendida — a pele do leviatã pulsa com eras inteiras de oceano. Ele vai embora sem mais explicação.</p>
+            <p>Três meses se passam nas ilhas. Treinos leves, sol, água cristalina, momentos de paz. Durante esse tempo, os três Elos são absorvidos gradualmente. <em>Quase uma vida normal.</em></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CHAPTER 15 -->
+      <div class="chapter-item" onclick="toggleChapter(this)">
+        <div class="chapter-header">
+          <div class="chapter-num">15</div>
+          <div class="chapter-info">
+            <div class="chapter-name">O Torneio dos 7 Reinos</div>
+            <div class="chapter-teaser">Syl — o reino fraco que nunca venceu. Isso está prestes a mudar.</div>
+          </div>
+          <span class="chapter-arrow">▶</span>
+        </div>
+        <div class="chapter-body">
+          <div class="chapter-text">
+            <p>Uma carta de Lyrem convida para o <strong>Torneio dos 7 Reinos</strong> — evento a cada 30 anos para determinar o reino mais poderoso. Os 7 reinos enviam seus 4 melhores guerreiros.</p>
+            <p><strong>Syl</strong> nunca venceu. Nem uma vez. Os outros reinos chamam de "Reino dos Fracos". A torcida no torneio? Nenhuma para Syl.</p>
+            <p>Na primeira rodada, <strong>Drakmor vs Lunaris</strong>: velocidade de Lunaris é impressionante, mas o campeão de Drakmor quebra todas as lâminas com as mãos e suas tropas avançam como animais. Lunaris é derrotado.</p>
+            <p><strong>Syl vs Varkh:</strong> Hrodgar "A Besta do Norte" parte sozinho. Fios flamáveis + chamas de Moeru colocam Hrodgar em chamas — ele ainda se move. Veneno de Kaena, cortes de Eryndra. O melhor soldado de Varkh cai. O restante do time luta bravamente mas perde também. A plateia entra em silêncio total. <em>Syl vence pela primeira vez.</em></p>
+            <p><strong>Elarion vs Nocthar</strong> ainda será disputado. A saga continua...</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Extra chapters from admin -->
+    <div id="extraChaptersContainer"></div>
+  </div>
+</section>
+
+<!-- REINOS -->
+<section class="section" id="reinos">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-label">O Mundo</div>
+      <h2 class="section-title">Os Reinos</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="kingdoms-grid">
+      <div class="kingdom-card"><div class="kingdom-symbol">🌿</div><div class="kingdom-name">Syl</div><div class="kingdom-trait">Reino Élfico Antigo</div><div class="kingdom-desc">O reino mais antigo, conhecido pela inteligência. Floresta cristalina. Símbolo: árvore prateada com seis raízes.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🔥</div><div class="kingdom-name">Drakmor</div><div class="kingdom-trait">Militarista</div><div class="kingdom-desc">Terras vulcânicas. Acreditam que força é justiça. Símbolo: dragão vermelho de boca aberta.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🏔️</div><div class="kingdom-name">Valley</div><div class="kingdom-trait">Reino Humano Central</div><div class="kingdom-desc">Ponto de partida da jornada. Sede da Guilda dos Aventureiros. Governado por um rei adormecido.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">⚒️</div><div class="kingdom-name">Duraz</div><div class="kingdom-trait">Reino dos Anões</div><div class="kingdom-desc">Nas montanhas. O som de bigornas nunca para. Lar de Titan, um dos melhores ferreiros do mundo.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🌑</div><div class="kingdom-name">Nocthar</div><div class="kingdom-trait">Reino Amaldiçoado</div><div class="kingdom-desc">Acreditavam ter sido destruído. Vive escondido nas profundezas. Usa magia proibida. Símbolo: olho negro rachado.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">☀️</div><div class="kingdom-name">Elarion</div><div class="kingdom-trait">Reino Religioso</div><div class="kingdom-desc">Se consideram os escolhidos. Igreja extremamente poderosa. Caçam magia proibida. Símbolo: sol dourado.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">☁️</div><div class="kingdom-name">Aeris</div><div class="kingdom-trait">Cidades Flutuantes</div><div class="kingdom-desc">Suspenso acima das nuvens. Pontes gigantes. Campeão do último torneio. Símbolo: asa com raio.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">❄️</div><div class="kingdom-name">Geluretch</div><div class="kingdom-trait">Inverno Eterno</div><div class="kingdom-desc">Lar de Moeru Tenshi. Frostine tentou usar o frio para conquistar Valley. Lar do dragão de gelo mensageiro.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🐊</div><div class="kingdom-name">Zhal (Liz'thaar)</div><div class="kingdom-trait">Reino dos Lizards</div><div class="kingdom-desc">Terreno lamacento. Alison recebeu o título LAAI'SHAAN — Aquele que rompe correntes — por libertar o povo do clã Sszareth.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🌊</div><div class="kingdom-name">Mare'Zura</div><div class="kingdom-trait">Ilhas do Oceano</div><div class="kingdom-desc">Areia branca, água cristalina. Lar temporário da equipe. Local do encontro com o Leviatã Primordial.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🐺</div><div class="kingdom-name">Varkh</div><div class="kingdom-trait">Reino do Norte</div><div class="kingdom-desc">Frio absoluto. Valorizam honra e sobrevivência. Crianças aprendem a lutar cedo. Símbolo: lobo branco.</div></div>
+      <div class="kingdom-card"><div class="kingdom-symbol">🌙</div><div class="kingdom-name">Lunaris</div><div class="kingdom-trait">Reino Noturno</div><div class="kingdom-desc">Governado por sacerdotisas e astrólogos. Dizem prever o futuro pelas estrelas. Símbolo: lua crescente azul.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PODERES -->
+<section class="section" id="poderes" style="background: rgba(0,0,0,0.2);">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-label">Habilidades Absorvidas</div>
+      <h2 class="section-title">Poderes de Alison</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="powers-grid">
+      <div class="power-card"><div class="power-name">⚡ Absorção de Slime</div><div class="power-desc">Absorve inimigos mortos e incorpora seus poderes e características físicas.</div></div>
+      <div class="power-card"><div class="power-name">💚 Regeneração de Slime</div><div class="power-desc">Cura ferimentos rapidamente, inclusive os que antes não fechavam.</div></div>
+      <div class="power-card"><div class="power-name">🌊 Liquidificação</div><div class="power-desc">Pode transformar o corpo em gosma líquida para escapar de ataques ou se mover pelo chão.</div></div>
+      <div class="power-card"><div class="power-name">🦇 Asas de Morcego (Slime)</div><div class="power-desc">Asas criadas de slime. Ativar e desativar à vontade. Permite voo.</div></div>
+      <div class="power-card"><div class="power-name">🕸️ Fios Sonoros</div><div class="power-desc">Captura e reproduz sons. Base para comunicação a distância e vigilância.</div></div>
+      <div class="power-card"><div class="power-name">✂️ Fios Cortantes</div><div class="power-desc">Amplificados pelo anel de Duraz, os fios agora cortam com precisão cirúrgica.</div></div>
+      <div class="power-card"><div class="power-name">🦗 Lâminas Quitinosas</div><div class="power-desc">Do louva-deus gigante. Lâminas que cortam aço e envenenam. Alta mobilidade e flexibilidade.</div></div>
+      <div class="power-card"><div class="power-name">⚗️ Veneno Purificado</div><div class="power-desc">Venenos podem ser imbuídos com energia purificadora para efeitos especiais.</div></div>
+      <div class="power-card"><div class="power-name">🔵 Purificação do Caos</div><div class="power-desc">Transforma energia maligna e caótica em poder puro. Única característica de um Divergente.</div></div>
+      <div class="power-card"><div class="power-name">🛡️ Escama de Ferro</div><div class="power-desc">Absorvida de Krog Sszareth. Aumenta drasticamente a resistência do corpo.</div></div>
+      <div class="power-card"><div class="power-name">☠️ Elo do Sacrifício</div><div class="power-desc">Poder imenso temporário — velocidade como teleporte — mas cada segundo causa um ferimento ao usuário.</div></div>
+      <div class="power-card"><div class="power-name">🌀 Elo de Drenagem/Vida</div><div class="power-desc">Cria uma área que drena vida dos inimigos ou transfere para aliados. Alto gasto de energia.</div></div>
+      <div class="power-card"><div class="power-name">👻 Elo da Alma</div><div class="power-desc">Após matar inimigos, pode capturar e armazenar suas almas.</div></div>
+      <div class="power-card"><div class="power-name">🛡️ Imunidade ao Caos</div><div class="power-desc">Resistência elevada à corrupção caótica, permitindo absorver fragmentos de poder do caos.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="section" id="galeria">
+  <div class="page-wrap">
+    <div class="section-header">
+      <div class="section-label">Imagens</div>
+      <h2 class="section-title">Galeria</h2>
+      <div class="section-line"></div>
+    </div>
+    <div id="galleryContainer">
+      <p style="text-align:center; color:var(--text-dim); font-style:italic; font-family:'Cinzel',serif; font-size:12px; letter-spacing:2px;">As imagens serão adicionadas pelo administrador.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-title">Wordilene Divergent</div>
+  <p style="font-size:13px;color:var(--text-secondary);margin:8px 0 16px;font-style:italic;">"Não morre. Ainda irei te derrotar em algo." — Eryndra</p>
+  <div class="footer-copy">© Todos os direitos reservados ao autor — conteúdo protegido</div>
+</footer>
+
+<!-- AI FLOATING BUTTON -->
+<button class="ai-fab" onclick="toggleAiChat()" title="Perguntar sobre a história">
+  <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-5h2v2h-2zm0-8h2v6h-2z"/></svg>
+</button>
+
+<!-- AI CHAT PANEL -->
+<div class="ai-chat-panel" id="aiChatPanel">
+  <div class="ai-chat-header">
+    <div class="ai-chat-dot"></div>
+    <div class="ai-chat-title">Oráculo de Wordilene</div>
+    <button class="ai-chat-close" onclick="toggleAiChat()">✕</button>
+  </div>
+  <div class="ai-chat-messages" id="aiChatMessages">
+    <div class="ai-msg bot">Olá! Sou o Oráculo de Wordilene Divergent. Posso responder suas dúvidas sobre a história, personagens, poderes e reinos. O que deseja saber?</div>
+  </div>
+  <div class="ai-chat-input-row">
+    <input class="ai-chat-input" id="aiChatInput" placeholder="Faça uma pergunta..." onkeydown="if(event.key==='Enter')sendAiMessage()">
+    <button class="ai-send-btn" onclick="sendAiMessage()">➤</button>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeAdminModal()">✕</button>
+    <div id="adminLoginSection">
+      <div class="modal-title">Acesso Administrativo</div>
+      <div class="form-group">
+        <label class="form-label">Senha</label>
+        <input class="form-input" type="password" id="adminPasswordInput" placeholder="Digite a senha admin" onkeydown="if(event.key==='Enter')checkAdminPassword()">
+      </div>
+      <div id="adminLoginMsg"></div>
+      <button class="btn-primary" onclick="checkAdminPassword()">Entrar</button>
+    </div>
+    <div id="adminPanel" style="display:none">
+      <div class="modal-title">Painel Admin — Wordilene</div>
+      <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('chapters',this)">+ Capítulo</button>
+        <button class="admin-tab" onclick="switchAdminTab('images',this)">+ Imagens</button>
+        <button class="admin-tab" onclick="switchAdminTab('manage',this)">Gerenciar</button>
+      </div>
+
+      <!-- TAB: Add Chapter -->
+      <div class="admin-tab-content active" id="tab-chapters">
+        <div id="chapterAddMsg"></div>
+        <div class="form-group">
+          <label class="form-label">Título do Capítulo</label>
+          <input class="form-input" id="newChapterTitle" placeholder="Ex: Capítulo 16 — A Nova Ameaça">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Conteúdo (use // para quebrar parágrafos)</label>
+          <textarea class="form-textarea" id="newChapterText" placeholder="Escreva o conteúdo aqui. Use // para separar parágrafos."></textarea>
+        </div>
+        <button class="btn-primary" onclick="addChapter()">Adicionar Capítulo</button>
+      </div>
+
+      <!-- TAB: Add Images -->
+      <div class="admin-tab-content" id="tab-images">
+        <div id="imageAddMsg"></div>
+        <div class="form-group">
+          <label class="form-label">Legenda da imagem</label>
+          <input class="form-input" id="newImageCaption" placeholder="Ex: Eryndra na batalha de Vargorath">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Arquivo de Imagem</label>
+          <input type="file" id="newImageFile" accept="image/*" style="-webkit-user-select:auto;user-select:auto;color:var(--text-secondary);font-size:14px;">
+        </div>
+        <button class="btn-primary" onclick="addImage()">Adicionar Imagem</button>
+        <div class="image-preview-grid" id="imagePreviewGrid" style="margin-top:20px;"></div>
+      </div>
+
+      <!-- TAB: Manage -->
+      <div class="admin-tab-content" id="tab-manage">
+        <p style="color:var(--text-dim);font-size:13px;margin-bottom:16px;">Capítulos extras adicionados:</p>
+        <div class="admin-chapter-list" id="adminChapterList"></div>
+        <div style="margin-top:20px;">
+          <button class="btn-danger" onclick="if(confirm('Apagar TODOS os capítulos e imagens extras?')){clearAllExtra();}">Limpar tudo</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── ANTI-COPY ──
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('keydown', e => {
+  if((e.ctrlKey||e.metaKey) && ['c','C','a','A','s','S','u','U','p','P'].includes(e.key)) {
+    if(!e.target.classList.contains('form-input') &&
+       !e.target.classList.contains('form-textarea') &&
+       !e.target.classList.contains('ai-chat-input') &&
+       !e.target.classList.contains('form-select')) {
+      e.preventDefault();
+    }
+  }
+  if(e.key === 'F12' || (e.ctrlKey && e.shiftKey && ['I','J','C'].includes(e.key))) e.preventDefault();
+});
+document.addEventListener('dragstart', e => e.preventDefault());
+document.addEventListener('selectstart', e => {
+  if(!e.target.classList.contains('form-input') &&
+     !e.target.classList.contains('form-textarea') &&
+     !e.target.classList.contains('ai-chat-input') &&
+     !e.target.classList.contains('form-select')) {
+    e.preventDefault();
+  }
+});
+
+// ── CHAPTER TOGGLE ──
+function toggleChapter(el) {
+  el.classList.toggle('open');
+}
+
+// ── ADMIN ──
+const ADMIN_PASSWORD = "divergente2024";
+
+function openAdminModal() {
+  document.getElementById('adminModal').classList.add('open');
+}
+function closeAdminModal() {
+  document.getElementById('adminModal').classList.remove('open');
+}
+function checkAdminPassword() {
+  const val = document.getElementById('adminPasswordInput').value;
+  const msg = document.getElementById('adminLoginMsg');
+  if(val === ADMIN_PASSWORD) {
+    document.getElementById('adminLoginSection').style.display = 'none';
+    document.getElementById('adminPanel').style.display = 'block';
+    loadAdminChapterList();
+    loadImagePreviews();
+  } else {
+    msg.innerHTML = '<div class="msg error">Senha incorreta.</div>';
+  }
+}
+function switchAdminTab(tab, btn) {
+  document.querySelectorAll('.admin-tab').forEach(b=>b.classList.remove('active'));
+  document.querySelectorAll('.admin-tab-content').forEach(c=>c.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('tab-'+tab).classList.add('active');
+}
+
+// Storage helpers
+function getExtraChapters() {
+  try { return JSON.parse(localStorage.getItem('wd_chapters')||'[]'); } catch(e){ return []; }
+}
+function saveExtraChapters(arr) {
+  localStorage.setItem('wd_chapters', JSON.stringify(arr));
+}
+function getExtraImages() {
+  try { return JSON.parse(localStorage.getItem('wd_images')||'[]'); } catch(e){ return []; }
+}
+function saveExtraImages(arr) {
+  localStorage.setItem('wd_images', JSON.stringify(arr));
+}
+
+function addChapter() {
+  const title = document.getElementById('newChapterTitle').value.trim();
+  const text = document.getElementById('newChapterText').value.trim();
+  const msg = document.getElementById('chapterAddMsg');
+  if(!title||!text) {
+    msg.innerHTML='<div class="msg error">Preencha título e conteúdo.</div>';
+    return;
+  }
+  const chapters = getExtraChapters();
+  chapters.push({id: Date.now(), title, text});
+  saveExtraChapters(chapters);
+  document.getElementById('newChapterTitle').value='';
+  document.getElementById('newChapterText').value='';
+  msg.innerHTML='<div class="msg success">Capítulo adicionado com sucesso!</div>';
+  renderExtraChapters();
+  loadAdminChapterList();
+  setTimeout(()=>msg.innerHTML='', 3000);
+}
+
+function renderExtraChapters() {
+  const container = document.getElementById('extraChaptersContainer');
+  const chapters = getExtraChapters();
+  if(chapters.length === 0) { container.innerHTML=''; return; }
+  let html = '<div class="extra-chapters-section"><div class="section-header" style="margin-top:40px"><div class="section-label">Conteúdo Novo</div><h2 class="section-title">Continuação da Saga</h2><div class="section-line"></div></div>';
+  chapters.forEach(ch => {
+    const paragraphs = ch.text.split('//').map(p=>`<p>${p.trim()}</p>`).join('');
+    html += `<div class="extra-chapter-item"><div class="extra-chapter-title">${ch.title}</div><div class="extra-chapter-text">${paragraphs}</div></div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function addImage() {
+  const caption = document.getElementById('newImageCaption').value.trim();
+  const file = document.getElementById('newImageFile').files[0];
+  const msg = document.getElementById('imageAddMsg');
+  if(!file) { msg.innerHTML='<div class="msg error">Selecione uma imagem.</div>'; return; }
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const images = getExtraImages();
+    images.push({id: Date.now(), caption, src: e.target.result});
+    saveExtraImages(images);
+    document.getElementById('newImageCaption').value='';
+    document.getElementById('newImageFile').value='';
+    msg.innerHTML='<div class="msg success">Imagem adicionada!</div>';
+    renderGallery();
+    loadImagePreviews();
+    setTimeout(()=>msg.innerHTML='',3000);
+  };
+  reader.readAsDataURL(file);
+}
+
+function renderGallery() {
+  const container = document.getElementById('galleryContainer');
+  const images = getExtraImages();
+  if(images.length === 0) {
+    container.innerHTML = '<p style="text-align:center;color:var(--text-dim);font-style:italic;font-family:\'Cinzel\',serif;font-size:12px;letter-spacing:2px;">As imagens serão adicionadas pelo administrador.</p>';
+    return;
+  }
+  let html = '<div class="gallery-grid">';
+  images.forEach(img => {
+    html += `<div><img class="gallery-img" src="${img.src}" alt="${img.caption||''}"><div class="gallery-caption">${img.caption||''}</div></div>`;
+  });
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+function loadImagePreviews() {
+  const grid = document.getElementById('imagePreviewGrid');
+  const images = getExtraImages();
+  if(images.length===0){grid.innerHTML='';return;}
+  let html='';
+  images.forEach(img=>{
+    html+=`<div class="image-preview-item"><img src="${img.src}" alt=""><button class="image-delete-btn" onclick="deleteImage(${img.id})">×</button></div>`;
+  });
+  grid.innerHTML=html;
+}
+
+function deleteImage(id) {
+  let images = getExtraImages().filter(i=>i.id!==id);
+  saveExtraImages(images);
+  renderGallery();
+  loadImagePreviews();
+}
+
+function loadAdminChapterList() {
+  const list = document.getElementById('adminChapterList');
+  const chapters = getExtraChapters();
+  if(chapters.length===0){list.innerHTML='<p style="color:var(--text-dim);font-size:13px;font-style:italic;">Nenhum capítulo extra ainda.</p>';return;}
+  list.innerHTML = chapters.map(ch=>
+    `<div class="admin-chapter-item">
+      <span class="admin-chapter-title">${ch.title}</span>
+      <button class="btn-danger" onclick="deleteChapter(${ch.id})">Apagar</button>
+    </div>`
+  ).join('');
+}
+
+function deleteChapter(id) {
+  let chapters = getExtraChapters().filter(c=>c.id!==id);
+  saveExtraChapters(chapters);
+  renderExtraChapters();
+  loadAdminChapterList();
+}
+
+function clearAllExtra() {
+  saveExtraChapters([]);
+  saveExtraImages([]);
+  renderExtraChapters();
+  renderGallery();
+  loadAdminChapterList();
+  loadImagePreviews();
+}
+
+// Init render on load
+renderExtraChapters();
+renderGallery();
+
+// ── AI CHAT ──
+const STORY_CONTEXT = `Você é o Oráculo da história "Wordilene Divergent". Responda APENAS dúvidas sobre esta história. Seja conciso e direto. Fale em português.
+
+RESUMO DA HISTÓRIA:
+Título: Wordilene Divergent
+Protagonista: Alison — morreu na Terra e reencarnOU num mundo fantasia desconhecido. É um "Divergente" — pode purificar energia maligna transformando-a em poder puro.
+
+PODERES DE ALISON: Absorção (absorve inimigos e ganha seus poderes), Regeneração de Slime, Liquidificação (vira gosma), Asas de Morcego de Slime, Fios Sonoros (captura sons), Fios Cortantes, Lâminas Quitinosas (do louva-deus, cortam aço e envenenam), Veneno Purificado, Purificação do Caos, Escama de Ferro (de Krog), Elo do Sacrifício (velocidade extrema mas se fere a cada segundo), Elo de Drenagem/Vida, Elo da Alma (captura almas após matar inimigos), Imunidade ao Caos.
+
+PERSONAGENS:
+- Alison: protagonista, divergente, poderes de slime
+- Eryndra: dark elfa, filha ilegítima do Rei Élfico de Syl, mãe morta por goblins aos 15 anos. Usa espada negra e manipulação de sombras. Interesse romântico de Alison.
+- Kaena: Arcanis, sobrevivente da Ordem do Selamento. Usa magia de fogo, selos e raios. Interesse romântico de Moeru.
+- Moeru Tenshi: dragonite (meio-dragão meio-humano), o mais temido de Geluretch. Usa fogo. Personalidade explosiva e divertida.
+- Lumea: balconista da guilda
+- Varrox: capitão da guarda de Valley
+- Lyrem: Rei Élfico de Syl
+- Lord Vassamir: traidor que envenenou o rei de Valley, foi derrotado
+- Korvaxen: demônio que marcou Alison com a marca do culto
+- Hrodgar: "A Besta do Norte", guerreiro de Varkh no torneio
+- Krog Sszareth: Pele de Ferro, chefe da mafia em Zhal
+- Frostine: manipuladora de gelo que congelou Valley
+- Titan: ferreiro anão de Duraz
+- Heraldo: gigante guardião da dungeon, deu o terceiro elo antes de morrer
+- Leviatã Primordial: guardião abissal do oceano de Mare'Zura, pacífico
+
+REINOS: Valley (humanos), Syl (elfos), Drakmor (militarista vulcânico), Duraz (anões), Zhal/Liz'thaar (lizards), Geluretch (inverno eterno), Aeris (cidades flutuantes), Varkh (norte, honra), Lunaris (noturno, astrólogos), Elarion (religioso), Nocthar (amaldiçoado), Mare'Zura (ilhas oceânicas)
+
+O CULTO: Visa reviver 3 Deuses do Caos — Azhurath (Deus do Vazio), Marephia (Deusa da Distorção), Krov'rem (Deus do Sangue e da Evolução).
+
+RESUMO DOS ARCOS:
+1. Chega ao mundo, mata slime, vai a Valley
+2. Salva Eryndra dos goblins
+3. Recebe marca do culto de Korvaxen
+4. Purifica a marca, conhece Kaena
+5. Floresta Vargorath, ruptura, absorve asas de morcego
+6. Espalha fios sonoros, descobre traição de Vassamir
+7. Vai a Duraz, derrota Ferrogul, ganha armas de Titan
+8. Derrota Vassamir na batalha de Valley
+9. Festival em Syl, Eryndra se torna filha reconhecida
+10. Dungeon dos 3 Elos em Vargorath
+11. Geluretch — derrota Frostine, recruta Moeru
+12. Zhal — derrota Krog, título LAAI'SHAAN
+13. Mare'Zura — encontra Leviatã Primordial
+14. Torneio dos 7 Reinos — Syl vence pela primeira vez
+
+Se perguntarem sobre algo não na história, diga educadamente que não tem essa informação. Não invente nada.`;
+
+let chatHistory = [];
+
+function toggleAiChat() {
+  const panel = document.getElementById('aiChatPanel');
+  panel.classList.toggle('open');
+  if(panel.classList.contains('open')) {
+    document.getElementById('aiChatInput').focus();
+  }
+}
+
+async function sendAiMessage() {
+  const input = document.getElementById('aiChatInput');
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  addChatMsg(msg, 'user');
+  input.value = '';
+
+  chatHistory.push({role:'user', content: msg});
+
+  // Show typing
+  const typingId = 'typing_' + Date.now();
+  const messagesDiv = document.getElementById('aiChatMessages');
+  const typingEl = document.createElement('div');
+  typingEl.className = 'ai-msg bot';
+  typingEl.id = typingId;
+  typingEl.innerHTML = '<div class="ai-typing"><span></span><span></span><span></span></div>';
+  messagesDiv.appendChild(typingEl);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+  try {
+    const resp = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: STORY_CONTEXT,
+        messages: chatHistory
+      })
+    });
+    const data = await resp.json();
+    const reply = data.content?.[0]?.text || 'Não consegui responder agora.';
+
+    chatHistory.push({role:'assistant', content: reply});
+
+    // Remove typing
+    document.getElementById(typingId)?.remove();
+    addChatMsg(reply, 'bot');
+  } catch(err) {
+    document.getElementById(typingId)?.remove();
+    addChatMsg('Erro ao conectar com o Oráculo. Tente novamente.', 'bot');
+  }
+}
+
+function addChatMsg(text, who) {
+  const messagesDiv = document.getElementById('aiChatMessages');
+  const el = document.createElement('div');
+  el.className = 'ai-msg ' + who;
+  el.textContent = text;
+  messagesDiv.appendChild(el);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+// Keep max 10 turns in history to avoid token overflow
+function trimHistory() {
+  if(chatHistory.length > 20) chatHistory = chatHistory.slice(-20);
+}
+setInterval(trimHistory, 5000);
+</script>
+</body>
+</html>
